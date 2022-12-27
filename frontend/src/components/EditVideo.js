@@ -10,7 +10,7 @@ const EditVideo = (props) => {
   })
 
   useEffect(() => {
-    axios.get(`/api/videos/${props.match.params.videoId}`)
+    axios.get(`/backend/videos/${props.match.params.videoId}`)
       .then(resp => {
         console.log(resp.data)
         updateFormData({
@@ -32,7 +32,7 @@ const EditVideo = (props) => {
   function handleSubmit(event) {
     event.preventDefault()
     const token = localStorage.getItem('token')
-    axios.put(`/api/videos/${props.match.params.videoId}`, formData, {
+    axios.put(`/backend/videos/${props.match.params.videoId}`, formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {

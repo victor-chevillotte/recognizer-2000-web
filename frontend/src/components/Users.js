@@ -11,7 +11,7 @@ const Users = (props) => {
   const token = localStorage.getItem('token')
 
   useEffect(() => {
-    axios.get('/api/users')
+    axios.get('/backend/users')
       .then(resp => {
 
         const userData = resp.data.map(user => {
@@ -35,7 +35,7 @@ const Users = (props) => {
         updateUserData(userData)
       })
 
-    axios.get(`/api/users/${userId}`)
+    axios.get(`/backend/users/${userId}`)
       .then(resp => {
         updateUser(resp.data.following)
       })
@@ -60,7 +60,7 @@ const Users = (props) => {
 
       const newFollow = { following: [{ id: user.id }, ...currentUser] }
 
-      axios.put('/api/follow', newFollow, {
+      axios.put('/backend/follow', newFollow, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(resp => {
@@ -89,7 +89,7 @@ const Users = (props) => {
 
       const putObj = { following: currentUser }
 
-      axios.put('/api/follow', putObj, {
+      axios.put('/backend/follow', putObj, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(resp => {

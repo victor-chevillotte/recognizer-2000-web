@@ -1,11 +1,11 @@
 version: '3.7'
 
 services:
-  api:
+  backend:
     build:
-      context: ./api
+      context: ./backend
       dockerfile: Dockerfile-prod
-    image: "${API_IMAGE}"
+    image: "${BACKEND_IMAGE}"
     ports:
       - 5000
     environment:
@@ -14,15 +14,15 @@ services:
       - DATABASE_URL=${DATABASE_URL}
       - SECRET_KEY=${SECRET_KEY}
 
-  client:
+  frontend:
     build:
-      context: ./client
+      context: ./frontend
       dockerfile: Dockerfile-prod
       args:
         - NODE_ENV=production
         - REACT_APP_SERVICE_URL=${REACT_APP_SERVICE_URL}
-    image: "${CLIENT_IMAGE}"
+    image: "${FRONTEND_IMAGE}"
     ports:
       - 3000
     depends_on:
-      - api
+      - backend

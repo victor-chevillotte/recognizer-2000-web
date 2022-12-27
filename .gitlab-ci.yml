@@ -15,7 +15,7 @@ variables:
 
 before_script:
   - export IMAGE=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
-  - apk add --no-cache openssh-client bash
+  - apk add --no-cache openssh-frontend bash
   - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
   - chmod +x ./setup_env.sh
   - bash ./setup_env.sh
@@ -23,19 +23,19 @@ before_script:
 build:
   stage: build
   script:
-    - export API_IMAGE=$IMAGE:api
-    - export CLIENT_IMAGE=$IMAGE:client
-    - docker pull $IMAGE:api || true
-    - docker pull $IMAGE:client || true
+    - export BACKEND_IMAGE=$IMAGE:backend
+    - export FRONTEND_IMAGE=$IMAGE:frontend
+    - docker pull $IMAGE:backend || true
+    - docker pull $IMAGE:frontend || true
     - docker-compose -f docker-compose.ci.yml build --no-cache
-    - docker push $IMAGE:api
-    - docker push $IMAGE:client
+    - docker push $IMAGE:backend
+    - docker push $IMAGE:frontend
 
 deploy:
   stage: deploy
   script:
-    - export API_IMAGE=$IMAGE:api
-    - export CLIENT_IMAGE=$IMAGE:client
+    - export BACKEND_IMAGE=$IMAGE:backend
+    - export FRONTEND_IMAGE=$IMAGE:frontend
     - mkdir -p ~/.ssh
     - echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
     - cat ~/.ssh/id_rsa

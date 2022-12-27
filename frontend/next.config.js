@@ -17,7 +17,7 @@ const nextConfig = {
     mySecret: "secret"
   },
   env: {
-    // Will be available on both server and client
+    // Will be available on both server and frontend
     API_URL: process.env.REACT_APP_SERVICE_URL
   }
 };

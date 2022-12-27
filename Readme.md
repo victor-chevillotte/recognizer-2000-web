@@ -4,7 +4,7 @@ An example of web application using Flask, React + NextJS with Docker.
 
 ## Getting Started
 
-This project consists of Flask application for the backend API, NextJS for client side application and nginx as a reverse-proxy for connecting api and the front-end. This project also use `docker-compose` to make it easy run all of the container at once.
+This project consists of Flask application for the backend backend, NextJS for frontend side application and nginx as a reverse-proxy for connecting backend and the front-end. This project also use `docker-compose` to make it easy run all of the container at once.
 
 This application will showcase:
 
@@ -30,10 +30,10 @@ $ docker-compose up
 
 ```
 # Run database migration
-$ docker-compose exec api python manage.py db upgrade
+$ docker-compose exec backend python manage.py db upgrade
 
 # Run database seed
-$ docker-compose exec api python manage.py seed_db
+$ docker-compose exec backend python manage.py seed_db
 ```
 
 The seeder will contain sample users data:

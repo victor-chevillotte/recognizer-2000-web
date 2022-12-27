@@ -14,7 +14,7 @@ const ReplyComment = (props) => {
 
 
   useEffect(() => {
-    axios.get(`/api/comments/${props.match.params.commentId}`)
+    axios.get(`/backend/comments/${props.match.params.commentId}`)
       .then(resp => {
         updateFormData(resp.data)
         console.log(resp.data)
@@ -32,7 +32,7 @@ const ReplyComment = (props) => {
   function handlesSubmit(event) {
     event.preventDefault()
     const token = localStorage.getItem('token')
-    axios.post(`/api/comments/${props.match.params.commentId}/nested`, newCommentData, {
+    axios.post(`/backend/comments/${props.match.params.commentId}/nested`, newCommentData, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {

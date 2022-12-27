@@ -31,7 +31,7 @@ const Video = (props) => {
   // Fetches from Backend
 
   useEffect(() => {
-    axios.get(`/api/videos/${videoId}`)
+    axios.get(`/backend/videos/${videoId}`)
       .then(resp => {
         updateVideo(resp.data)
       })
@@ -41,7 +41,7 @@ const Video = (props) => {
 
 
   function handleDelete() {
-    axios.delete(`/api/videos/${videoId}`, {
+    axios.delete(`/backend/videos/${videoId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => {
@@ -67,7 +67,7 @@ const Video = (props) => {
   function handleComment(event) {
     event.preventDefault()
 
-    axios.post(`/api/videos/${videoId}/comments`, formData, {
+    axios.post(`/backend/videos/${videoId}/comments`, formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
@@ -83,7 +83,7 @@ const Video = (props) => {
   }
 
   function handleDeleteComment(commentId) {
-    axios.delete(`/api/comments/${commentId}`, {
+    axios.delete(`/backend/comments/${commentId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
@@ -95,7 +95,7 @@ const Video = (props) => {
   function handleDeleteReply(nestedComment) {
     const commentId = nestedComment.comment_id
     const replyId = nestedComment.id
-    axios.delete(`/api/comments/${commentId}/${replyId}`, {
+    axios.delete(`/backend/comments/${commentId}/${replyId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
@@ -121,7 +121,7 @@ const Video = (props) => {
       clickedComment: 0
     }
     updateReplyBox(replyData)
-    axios.post(`/api/comments/${replyBox.clickedComment}/nested`, newCommentData, {
+    axios.post(`/backend/comments/${replyBox.clickedComment}/nested`, newCommentData, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {

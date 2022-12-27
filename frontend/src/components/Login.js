@@ -18,7 +18,7 @@ const Login = (props) => {
   function handleSubmit(event) {
     event.preventDefault()
 
-    axios.post('/api/login', formData)
+    axios.post('/backend/login', formData)
       .then(resp => {
         console.log(resp.data)
         localStorage.setItem('token', resp.data.token)

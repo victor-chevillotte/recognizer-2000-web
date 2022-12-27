@@ -17,7 +17,7 @@ const Home = () => {
   // Fetches from our backend
 
   useEffect(() => {
-    axios.get('/api/videos')
+    axios.get('/backend/videos')
       .then(resp => {
         updateVideos(resp.data)
         console.log(resp.data)

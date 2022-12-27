@@ -22,7 +22,7 @@ const AddVideo = (props) => {
   function handleSubmit(event) {
     event.preventDefault()
     const token = localStorage.getItem('token')
-    axios.post('/api/videos', formData, {
+    axios.post('/backend/videos', formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {

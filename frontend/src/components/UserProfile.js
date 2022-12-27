@@ -11,11 +11,11 @@ const UserProfile = (props) => {
   const [videos, updateVideos] = useState([])
 
   useEffect(() => {
-    axios.get(`/api/users/${userId}`)
+    axios.get(`/backend/users/${userId}`)
       .then(resp => {
         updateUser(resp.data)
       })
-    axios.get('/api/videos')
+    axios.get('/backend/videos')
       .then(resp => {
         updateVideos(resp.data)
       })

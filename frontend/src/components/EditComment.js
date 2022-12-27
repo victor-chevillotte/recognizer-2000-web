@@ -8,7 +8,7 @@ const EditComment = (props) => {
   })
   console.log(props)
   useEffect(() => {
-    axios.get(`/api/comments/${props.match.params.commentId}`)
+    axios.get(`/backend/comments/${props.match.params.commentId}`)
       .then(resp => {
         console.log(resp.data.content)
         updateFormData({ content: resp.data.content })
@@ -27,7 +27,7 @@ const EditComment = (props) => {
     console.log(formData)
     event.preventDefault()
     const token = localStorage.getItem('token')
-    axios.put(`/api/comments/${props.match.params.commentId}`, formData, {
+    axios.put(`/backend/comments/${props.match.params.commentId}`, formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {

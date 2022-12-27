@@ -8,5 +8,5 @@ echo REACT_APP_SERVICE_URL=$REACT_APP_SERVICE_URL >> .env
 echo LETSENCRYPT_EMAIL=$LETSENCRYPT_EMAIL >> .env
 echo SUBDOMAIN=$SUBDOMAIN >> .env
 
-echo CLIENT_IMAGE=$IMAGE:client  >> .env
-echo API_IMAGE=$IMAGE:api  >> .env
+echo FRONTEND_IMAGE=$IMAGE:frontend  >> .env
+echo BACKEND_IMAGE=$IMAGE:backend  >> .env

@@ -10,7 +10,7 @@ const EditUser = (props) => {
 
 
   useEffect(() => {
-    axios.get(`/api/users/${props.match.params.userId}`)
+    axios.get(`/backend/users/${props.match.params.userId}`)
       .then(resp => {
         const data = resp.data
         updateFormData({
@@ -70,7 +70,7 @@ const EditUser = (props) => {
   function handleSubmit(event) {
     event.preventDefault()
     const token = localStorage.getItem('token')
-    axios.put('/api/update_user', formData, {
+    axios.put('/backend/update_user', formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
